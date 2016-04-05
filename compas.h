@@ -31,6 +31,8 @@ private:
     double matixYaw[2][2];
     //input
     int height;
+    //out Print
+    int xOut = 10;
 
 public:
     COMPAS(int inHeight, int inPrecent);

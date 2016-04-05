@@ -66,27 +66,27 @@ void COMPAS::outText(CvArr* img, double x, double y, double z, double yaw,double
     char nameX[] ="X = ";
     sprintf (text, "%f",x);
     strcat(nameX,text);
-    cvPutText(img, nameX , cvPoint(20,10), &font,CV_RGB(0,0,250));
+    cvPutText(img, nameX , cvPoint(xOut,10), &font,CV_RGB(0,0,250));
     char nameY [] = "Y = ";
     sprintf (text, "%f",y);
     strcat(nameY,text);
-    cvPutText(img, nameY , cvPoint(20,20), &font,CV_RGB(0,0,250));
+    cvPutText(img, nameY , cvPoint(xOut,20), &font,CV_RGB(0,0,250));
     char nameZ [] = "Z = ";
     sprintf (text, "%f",z);
     strcat(nameZ,text);
-    cvPutText(img, nameZ , cvPoint(20,30), &font,CV_RGB(0,0,250));
+    cvPutText(img, nameZ , cvPoint(xOut,30), &font,CV_RGB(0,0,250));
     char nameYaw [] = "Yaw = ";
     sprintf (text, "%f",yaw);
     strcat(nameYaw,text);
-    cvPutText(img, nameYaw , cvPoint(20,45), &font,CV_RGB(0,0,250));
+    cvPutText(img, nameYaw , cvPoint(xOut,45), &font,CV_RGB(0,0,250));
     char namePitch [] = "Pitch = ";
     sprintf (text, "%f",pitch);
     strcat(namePitch,text);
-    cvPutText(img, namePitch , cvPoint(20,55), &font,CV_RGB(0,0,250));
+    cvPutText(img, namePitch , cvPoint(xOut,55), &font,CV_RGB(0,0,250));
     char nameRoll [] = "Roll = ";
     sprintf (text, "%f",roll);
     strcat(nameRoll,text);
-    cvPutText(img, nameRoll , cvPoint(20,65), &font,CV_RGB(0,0,250));
+    cvPutText(img, nameRoll , cvPoint(xOut,65), &font,CV_RGB(0,0,250));
 
 }
 
