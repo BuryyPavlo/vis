@@ -14,6 +14,7 @@
 #include <compas.h>
 #include <readlogfile.h>
 #include <mythread.h>
+#include <errormessage.h>
 
 
 
@@ -42,6 +43,8 @@ int main(int argc, char* argv[])
         return 0;
     }
 
+
+
     QDateTime now = QDateTime::currentDateTime();
     QString strTime;
     strTime = now.toString("dd:MM:yyyy_HH:mm:ss:zzz");
@@ -54,11 +57,12 @@ int main(int argc, char* argv[])
         frame = cvQueryFrame( capture );
 
         //out put to img
+
         COMPAS compas(height, 20);
         compas.inYaw(log.getYawBla());
         compas.draw(frame);
         compas.outText(frame,log.getX(),log.getY(),log.getZ(),log.getYawBla(), log.getPitchBla(), log.getRollBla());
-        printf("Ok \n");
+      //  printf("Ok \n");
 
         // показываем
         cvShowImage("eye", frame);

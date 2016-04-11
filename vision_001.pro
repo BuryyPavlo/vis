@@ -15,11 +15,11 @@ SOURCES += main.cpp \
     compas.cpp \
     readlogfile.cpp \
     mythread.cpp \
-    printerror.cpp
+    errormessage.cpp
 
 
 HEADERS += \
     compas.h \
     readlogfile.h \
-    mythread.h \
-    printerror.h
+    errormessage.h \
+    mythread.h

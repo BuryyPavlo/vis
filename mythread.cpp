@@ -8,6 +8,6 @@ void MyThread ::run (int height, int percent, CvArr* img, double yaw)
     compas.inYaw(yaw);
     compas.draw(img);
     compas.outText(img,yaw,20,10,0,0,0);
-    printf("Ok \n");
+   // printf("Ok \n");
 }
 
