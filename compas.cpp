@@ -87,7 +87,6 @@ void COMPAS::outText(CvArr* img, double x, double y, double z, double yaw,double
     sprintf (text, "%f",roll);
     strcat(nameRoll,text);
     cvPutText(img, nameRoll , cvPoint(xOut,65), &font,CV_RGB(0,0,250));
-
 }
 
 

@@ -15,7 +15,7 @@
 #include <readlogfile.h>
 #include <mythread.h>
 #include <errormessage.h>
-
+#include <orientation.h>
 
 
 int main(int argc, char* argv[])
@@ -28,8 +28,8 @@ int main(int argc, char* argv[])
     //cvSetCaptureProperty(capture, CV_CAP_PROP_FRAME_HEIGHT, 720);//720/480/240
 
     // узнаем ширину и высоту кадра
-    double width = cvGetCaptureProperty(capture, CV_CAP_PROP_FRAME_WIDTH);
-    double height = cvGetCaptureProperty(capture, CV_CAP_PROP_FRAME_HEIGHT);
+    int width = cvGetCaptureProperty(capture, CV_CAP_PROP_FRAME_WIDTH);
+    int height = cvGetCaptureProperty(capture, CV_CAP_PROP_FRAME_HEIGHT);
     printf("width=%.0f; height=%.0f;\n\n", width, height );
 
     IplImage* frame=0;
@@ -43,8 +43,6 @@ int main(int argc, char* argv[])
         return 0;
     }
 
-
-
     QDateTime now = QDateTime::currentDateTime();
     QString strTime;
     strTime = now.toString("dd:MM:yyyy_HH:mm:ss:zzz");
@@ -52,7 +50,7 @@ int main(int argc, char* argv[])
     while(true){
 
         // получаем кадр
-        //QThread::msleep(100);
+        QThread::msleep(100);
         log.readLog();
         frame = cvQueryFrame( capture );
 
@@ -62,6 +60,9 @@ int main(int argc, char* argv[])
         compas.inYaw(log.getYawBla());
         compas.draw(frame);
         compas.outText(frame,log.getX(),log.getY(),log.getZ(),log.getYawBla(), log.getPitchBla(), log.getRollBla());
+        ORIENTATION ori (log.getX(),log.getY(),log.getZ(),log.getYawBla(), log.getPitchBla(), log.getRollBla(), 49, 36.75, 35);
+        ori.printDani(frame, width);
+
       //  printf("Ok \n");
 
         // показываем
@@ -82,6 +83,7 @@ int main(int argc, char* argv[])
             printf("capture... %s\n",filename);
             cvSaveImage(filename, frame);
         }
+
     }
     // освобождаем ресурсы
     cvReleaseCapture( &capture );

@@ -4,6 +4,7 @@
 #include <iostream>
 #include <QDateTime>
 #include <QDate>
+#include <errormessage.h>
 
 READLOGFILE::READLOGFILE(QString inWayToTxtFile):QFile(inWayToTxtFile)
 {
@@ -11,7 +12,7 @@ READLOGFILE::READLOGFILE(QString inWayToTxtFile):QFile(inWayToTxtFile)
     QFile logFile (wayToTxtFile);
     if (!logFile.open(QIODevice::ReadOnly))
     {
-        printError(1);
+        ERRORMESSAGE error(1,1);
         ifOpen = false;
     } else {
         ifOpen = true;
@@ -30,7 +31,7 @@ void READLOGFILE::readLog(){
     positionInFile += dani.length();
     QStringList words;
     if ((dani=="\r\n") || (dani=="")) {
-        printError(2);
+        ERRORMESSAGE error(1,2);
     } else {
         QString tempstr;
         int lengt=0;
@@ -54,39 +55,11 @@ void READLOGFILE::readLog(){
             pitchBla = words.at(5).toDouble();
             rollBla = words.at(6).toDouble();
         } else{
-            printError(3);
+            ERRORMESSAGE error(1,3);
+
         }
     }
 }
-
-//start of class error
-
-void READLOGFILE::printError(int numErro){
-    QString erroText;
-    switch (numErro) {
-    case 1:
-        erroText =  "Помилка читання файлу про положення БЛА!\n\n";
-        break;
-    case 2:{
-        QDateTime now = QDateTime::currentDateTime();
-        QString strTime;
-        strTime = now.toString("dd:MM:yyyy_HH:mm:ss:zzz");
-        erroText = "Не відбувся запис у файл logGPS!\n\n"+strTime;}
-        break;
-    case 3:
-        erroText = "Неправильна кільксть аргументів у записі GPS!\n\n";
-        break;
-    default:
-        erroText = "Невідома помилка!\n\n";
-        break;
-    }
-    std::cout << erroText.toStdString();
-}
-
-void READLOGFILE::printError(){
-    std::cout << "Невідома помилка!\n\n";
-}
-//end of class error
 
 double READLOGFILE::getYawBla(){
     return yawBla;

@@ -15,11 +15,13 @@ SOURCES += main.cpp \
     compas.cpp \
     readlogfile.cpp \
     mythread.cpp \
-    errormessage.cpp
+    errormessage.cpp \
+    orientation.cpp
 
 
 HEADERS += \
     compas.h \
     readlogfile.h \
     errormessage.h \
-    mythread.h
+    mythread.h \
+    orientation.h

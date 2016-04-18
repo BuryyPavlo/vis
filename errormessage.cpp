@@ -33,7 +33,6 @@ ERRORMESSAGE::ERRORMESSAGE(int proces, int type){
     }
 }
 
-
 ERRORMESSAGE::~ERRORMESSAGE(){
     std::cout << textError.toStdString();
 }
