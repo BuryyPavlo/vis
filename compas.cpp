@@ -62,32 +62,20 @@ void COMPAS::draw(CvArr* img){
 void COMPAS::outText(CvArr* img, double x, double y, double z, double yaw,double pitch, double roll){
     CvFont font;
     cvInitFont(&font, CV_FONT_HERSHEY_SIMPLEX, 0.4, 0.4, 0, 1, 9);
-    char text [20];
-    char nameX[] ="X = ";
-    sprintf (text, "%f",x);
-    strcat(nameX,text);
-    cvPutText(img, nameX , cvPoint(xOut,10), &font,CV_RGB(0,0,250));
-    char nameY [] = "Y = ";
-    sprintf (text, "%f",y);
-    strcat(nameY,text);
-    cvPutText(img, nameY , cvPoint(xOut,20), &font,CV_RGB(0,0,250));
-    char nameZ [] = "Z = ";
-    sprintf (text, "%f",z);
-    strcat(nameZ,text);
-    cvPutText(img, nameZ , cvPoint(xOut,30), &font,CV_RGB(0,0,250));
-    char nameYaw [] = "Yaw = ";
-    sprintf (text, "%f",yaw);
-    strcat(nameYaw,text);
-    cvPutText(img, nameYaw , cvPoint(xOut,45), &font,CV_RGB(0,0,250));
-    char namePitch [] = "Pitch = ";
-    sprintf (text, "%f",pitch);
-    strcat(namePitch,text);
-    cvPutText(img, namePitch , cvPoint(xOut,55), &font,CV_RGB(0,0,250));
-    char nameRoll [] = "Roll = ";
-    sprintf (text, "%f",roll);
-    strcat(nameRoll,text);
-    cvPutText(img, nameRoll , cvPoint(xOut,65), &font,CV_RGB(0,0,250));
+    cvPutText(img, toText(x, "X = ").toLatin1().data() , cvPoint(xOut,10), &font,CV_RGB(0,0,250));\
+    cvPutText(img, toText(y, "Y = ").toLatin1().data()  , cvPoint(xOut,20), &font,CV_RGB(0,0,250));
+    cvPutText(img, toText(z, "Z = ").toLatin1().data()  , cvPoint(xOut,30), &font,CV_RGB(0,0,250));
+    cvPutText(img, toText(yaw, "Yaw = ").toLatin1().data()  , cvPoint(xOut,45), &font,CV_RGB(0,0,250));
+    cvPutText(img, toText(pitch, "Pitch = ").toLatin1().data()  , cvPoint(xOut,55), &font,CV_RGB(0,0,250));
+    cvPutText(img, toText(roll, "Roll = ").toLatin1().data()  , cvPoint(xOut,65), &font,CV_RGB(0,0,250));
 }
 
+QString COMPAS::toText(double x, QString str){
+    QString text =  QString::number(x,'f');
+    str = str + text;
+    return str;
+}
 
+COMPAS::~COMPAS(){
 
+}

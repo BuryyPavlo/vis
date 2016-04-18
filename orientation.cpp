@@ -16,6 +16,10 @@ ORIENTATION::ORIENTATION(double x, double y, double z, double yaw, double pitch,
     findAnglPoint();
 }
 
+ORIENTATION::~ORIENTATION(){
+    //what do ???
+}
+
 double ORIENTATION::toRadian(double angle){
     return angle*M_PI/180;
 }
@@ -29,7 +33,6 @@ double ORIENTATION::mmToMeters(double mm){
 }
 
 void ORIENTATION ::findAnglPoint(){
-
     // головна точка
     O1.x = xBla;
     O1.y = yBla;
@@ -49,21 +52,22 @@ void ORIENTATION ::findAnglPoint(){
     P3.y = O1.y - OA;
     P4.y = O1.y - OA;
     //after turn
-    /*    P1 = multiplicatePoint(P1);
+/*
+    P1 = multiplicatePoint(P1);
     P2 = multiplicatePoint(P2);
     P3 = multiplicatePoint(P3);
     P4 = multiplicatePoint(P4);
 */
 }
-/*
-point  ORIENTATION::multiplicatePoint(point a){
+
+ORIENTATION::point  ORIENTATION::multiplicatePoint(point a){
     point b;
     b.x =mulMatrix[0][0]*a.x+mulMatrix[1][0]*a.y+mulMatrix[2][0]*a.z;
     b.y =mulMatrix[0][1]*a.x+mulMatrix[1][1]*a.y+mulMatrix[2][1]*a.z;
-    b.z =mulMatrix[0][2]*a.x+mulMatrix[1][2]*a.y+mulMatrix[2][2]*a.z
-    return point b;
+    b.z =mulMatrix[0][2]*a.x+mulMatrix[1][2]*a.y+mulMatrix[2][2]*a.z;
+    return b;
 }
-*/
+
 
 void ORIENTATION::rotartion(){
     // = 0
@@ -94,8 +98,8 @@ void ORIENTATION::rotartion(){
     matrixRoll[2][1] = sin(rollBla);
     matrixRoll[2][2] = cos(rollBla);
 
-    multiplicateMatrix1(matrixRoll,matrixPitch);
-    multiplicateMatrix(mulMatrix1,matrixYaw);
+    multiplicateMatrix1(matrixYaw,matrixPitch);
+    multiplicateMatrix(mulMatrix1,matrixRoll);
 
 }
 
@@ -122,9 +126,9 @@ void ORIENTATION::printDani(CvArr *img, int width){
     int xOut = width - 300;
     cvInitFont(&font, CV_FONT_HERSHEY_SIMPLEX, 0.4, 0.4, 0, 1, 9);
     cvPutText(img, toText(P1).toLatin1().data(), cvPoint(xOut,10), &font,CV_RGB(0,0,250));
-    cvPutText(img, toText(P2).toLatin1().data(), cvPoint(xOut,20), &font,CV_RGB(0,0,250));
-    cvPutText(img, toText(P3).toLatin1().data(), cvPoint(xOut,30), &font,CV_RGB(0,0,250));
-    cvPutText(img, toText(P4).toLatin1().data(), cvPoint(xOut,40), &font,CV_RGB(0,0,250));
+    cvPutText(img, toText(P2).toLatin1().data(), cvPoint(xOut,25), &font,CV_RGB(0,0,250));
+    cvPutText(img, toText(P3).toLatin1().data(), cvPoint(xOut,40), &font,CV_RGB(0,0,250));
+    cvPutText(img, toText(P4).toLatin1().data(), cvPoint(xOut,55), &font,CV_RGB(0,0,250));
 }
 
 QString ORIENTATION::toText(point A){

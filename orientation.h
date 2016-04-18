@@ -37,8 +37,6 @@ private:
     void findAnglPoint();
     void rotartion();
 
-
-
     struct point{
         double x = 0;
         double y = 0;
@@ -56,6 +54,7 @@ private:
 
 public:
     ORIENTATION(double x, double y, double z, double yaw, double pitch, double roll, double height, double widht, double focus);
+    ~ORIENTATION();
     void printDani(CvArr* img, int width);
 };
 

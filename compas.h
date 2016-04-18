@@ -34,12 +34,15 @@ private:
     //out Print
     int xOut = 10;
 
+    QString toText(double x, QString str);
+
 public:
     COMPAS(int inHeight, int inPrecent);
     void inYaw(double inYaw);
     void rotation();
     void draw(CvArr* img);
     void outText(CvArr* img, double x, double y, double z, double yaw,double pitch, double roll);
+    ~COMPAS();
 };
 
 #endif // COMPAS_H
