@@ -42,22 +42,28 @@ void ORIENTATION ::findAnglPoint(){
     double OA = (zBla * cameraHeight) / (2 * cameraFocus);
     //кутові точки
     //координата по х
-    P1.x = O1.x + OB;
-    P2.x = O1.x - OB;
-    P3.x = O1.x - OB;
-    P4.x = O1.x + OB;
+    P1.x = + OB;
+    P2.x = - OB;
+    P3.x = - OB;
+    P4.x = + OB;
     //кооридната по у
-    P1.y = O1.y + OA;
-    P2.y = O1.y + OA;
-    P3.y = O1.y - OA;
-    P4.y = O1.y - OA;
+    P1.y = + OA;
+    P2.y = + OA;
+    P3.y = - OA;
+    P4.y = - OA;
+
     //after turn
-/*
     P1 = multiplicatePoint(P1);
     P2 = multiplicatePoint(P2);
     P3 = multiplicatePoint(P3);
     P4 = multiplicatePoint(P4);
-*/
+
+    //add coordinate UAV
+    P1 = add(P1, O1);
+    P2 = add(P2, O1);
+    P3 = add(P3, O1);
+    P4 = add(P4, O1);
+
 }
 
 ORIENTATION::point  ORIENTATION::multiplicatePoint(point a){
@@ -138,5 +144,12 @@ QString ORIENTATION::toText(point A){
     text = QString::number(A.y, 'f');
     QString Y ="  Y = ";
     Y = Y + text;
-    return X = X+ Y;
+    return X = X + Y;
+}
+
+ORIENTATION::point ORIENTATION::add(point A, point B){
+    A.x += B.x;
+    A.y += B.y;
+    A.z += A.z;
+    return A;
 }

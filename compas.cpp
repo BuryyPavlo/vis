@@ -61,7 +61,7 @@ void COMPAS::draw(CvArr* img){
 
 void COMPAS::outText(CvArr* img, double x, double y, double z, double yaw,double pitch, double roll){
     CvFont font;
-    cvInitFont(&font, CV_FONT_HERSHEY_SIMPLEX, 0.4, 0.4, 0, 1, 9);
+    cvInitFont(&font, CV_FONT_HERSHEY_SIMPLEX, 0.4, 0.4, 0, 1, 8);
     cvPutText(img, toText(x, "X = ").toLatin1().data() , cvPoint(xOut,10), &font,CV_RGB(0,0,250));\
     cvPutText(img, toText(y, "Y = ").toLatin1().data()  , cvPoint(xOut,20), &font,CV_RGB(0,0,250));
     cvPutText(img, toText(z, "Z = ").toLatin1().data()  , cvPoint(xOut,30), &font,CV_RGB(0,0,250));

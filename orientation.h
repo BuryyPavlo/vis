@@ -51,6 +51,7 @@ private:
 
     point  multiplicatePoint(point A);
     QString toText(point A);
+    point add(point A, point B);
 
 public:
     ORIENTATION(double x, double y, double z, double yaw, double pitch, double roll, double height, double widht, double focus);

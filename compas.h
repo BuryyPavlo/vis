@@ -43,6 +43,7 @@ public:
     void draw(CvArr* img);
     void outText(CvArr* img, double x, double y, double z, double yaw,double pitch, double roll);
     ~COMPAS();
+
 };
 
 #endif // COMPAS_H
