@@ -3,9 +3,7 @@
 
 ORIENTATION::ORIENTATION(double x, double y, double z, double yaw, double pitch, double roll, double height, double weight,double focus)
 {
-    xBla = x;
-    yBla = y;
-    zBla = z;
+    mainPoint = creatPoint(x,y,z);
     yawBla = toRadian( yaw);
     pitchBla = toRadian( pitch);
     rollBla = toRadian(roll);
@@ -34,12 +32,12 @@ double ORIENTATION::mmToMeters(double mm){
 
 void ORIENTATION ::findAnglPoint(){
     // головна точка
-    O1.x = xBla;
-    O1.y = yBla;
+    O1.x = mainPoint.x;
+    O1.y = mainPoint.y;
     O1.z = 0;
     // обрахунок
-    double OB = (zBla * cameraWidht)  / (2 * cameraFocus);
-    double OA = (zBla * cameraHeight) / (2 * cameraFocus);
+    double OB = (mainPoint.z * cameraWidht)  / (2 * cameraFocus);
+    double OA = (mainPoint.z * cameraHeight) / (2 * cameraFocus);
     //кутові точки
     //координата по х
     P1.x = + OB;
@@ -110,8 +108,8 @@ void ORIENTATION::rotartion(){
 }
 
 void ORIENTATION::multiplicateMatrix1(double a[3][3], double b[3][3]){
-    for (int i= 0; i<3; i++)
-        for (int j= 0; j<3; j++){
+    for (int i = 0; i<3; i++)
+        for (int j = 0; j<3; j++){
             mulMatrix1[i][j] = 0;
             for (int k = 0; k<3; k++)
                 mulMatrix1[i][j] = mulMatrix1[i][j] + a[i][k]*b[k][j];
@@ -150,6 +148,15 @@ QString ORIENTATION::toText(point A){
 ORIENTATION::point ORIENTATION::add(point A, point B){
     A.x += B.x;
     A.y += B.y;
-    A.z += A.z;
+    A.z += B.z;
     return A;
+}
+
+
+ORIENTATION::point ORIENTATION::creatPoint(double x, double y, double z){
+    point retutnPoint;
+    retutnPoint.x = x;
+    retutnPoint.y = y;
+    retutnPoint.z = z;
+    return retutnPoint;
 }

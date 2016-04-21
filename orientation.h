@@ -48,6 +48,7 @@ private:
     point P3;
     point P4;
     point O1;
+    point mainPoint;
 
     point  multiplicatePoint(point A);
     QString toText(point A);
@@ -57,6 +58,7 @@ public:
     ORIENTATION(double x, double y, double z, double yaw, double pitch, double roll, double height, double widht, double focus);
     ~ORIENTATION();
     void printDani(CvArr* img, int width);
+    point creatPoint(double x, double y,double z);
 };
 
 #endif // ORIENTATION_H
