@@ -10,12 +10,14 @@ ERRORMESSAGE::ERRORMESSAGE(){
 }
 
 ERRORMESSAGE::ERRORMESSAGE(int proces, int type){
+    QDateTime now = QDateTime::currentDateTime();
+    QString strTime;
+    strTime = now.toString("dd:MM:yyyy_HH:mm:ss:zzz");
+    QString strProces ;
     switch (proces){
     case 1:
-        QDateTime now = QDateTime::currentDateTime();
-        QString strTime;
-        strTime = now.toString("dd:MM:yyyy_HH:mm:ss:zzz");
-        textError = "Файл!!!" +strTime + "  ";
+        strProces = "Файл! ";
+        textError = strProces + strTime + "  ";
         switch (type){
         case 1:
             textError +=  "Помилка читання файлу про положення БЛА!\n\n";
@@ -30,6 +32,18 @@ ERRORMESSAGE::ERRORMESSAGE(int proces, int type){
             textError += "Невідома помилка!\n\n";
             break;
         }
+    case 2:
+        strProces = "Камера! ";
+        textError = strProces + strTime + "  ";
+        switch (type){
+        case 1:
+            textError +=  "Не підключена камера!\n\n";
+            break;
+        default:
+            textError += "Невідома помилка!\n\n";
+            break;
+        }
+
     }
 }
 

@@ -17,11 +17,13 @@ SOURCES += main.cpp \
     compas.cpp \
     readlogfile.cpp \
     errormessage.cpp \
-    orientation.cpp
+    orientation.cpp \
+    point3d.cpp
 
 
 HEADERS += \
     compas.h \
     readlogfile.h \
     errormessage.h \
-    orientation.h
+    orientation.h \
+    point3d.h

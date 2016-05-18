@@ -16,13 +16,13 @@
 #include <errormessage.h>
 #include <orientation.h>
 
-#define LOGP(...) std::cout << __VA_ARGS__ << std::endl
-
-int main(int argc, char* argv[])
+int main()
 {
-
-    CvCapture *capture = cvCreateCameraCapture(CV_CAP_ANY); //cvCaptureFromCAM( 0 );
-    assert( capture );
+    CvCapture *capture = cvCreateCameraCapture(CV_CAP_ANY);
+    if (capture == 0  ) {
+        ERRORMESSAGE error(2,1);
+        return 0;
+    }
 
     // cvSetCaptureProperty(capture, CV_CAP_PROP_FRAME_WIDTH, 1280);//1280/640/320
     // cvSetCaptureProperty(capture, CV_CAP_PROP_FRAME_HEIGHT, 720);//720/480/240
