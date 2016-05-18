@@ -5,6 +5,7 @@
 #include "opencv2/highgui/highgui.hpp"
 #include "opencv/cv.h"
 #include "QString"
+#include <point3d.h>
 
 class ORIENTATION{
 
