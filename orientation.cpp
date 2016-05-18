@@ -1,5 +1,6 @@
 #include <orientation.h>
 #include <math.h>
+#include <point3d.h>
 
 ORIENTATION::ORIENTATION(double x, double y, double z, double yaw, double pitch, double roll, double height, double weight,double focus)
 {
