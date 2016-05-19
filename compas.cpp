@@ -9,7 +9,7 @@
 
 COMPAS::COMPAS(int inHeight, int inPercent){
     height = inHeight;
-    precent = 0.20;//((double)inPercent/100);
+    precent = ((double)inPercent/100);
     sizeCompass = (precent * height);
     heigthCompass = (int)(0.5 * sizeCompass);
     widhtCompass = (int)(heigthCompass * 0.25);

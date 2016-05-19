@@ -28,6 +28,7 @@ public:
     double getMatrixWidthMeters();
     double getfocusLenght();
     IplImage* getFrame();
+    void setFrame();
     bool getStatusCamera();
 
 };

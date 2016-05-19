@@ -62,10 +62,14 @@ int Camera::getMatrixWidthPixel(){
     return matrixWidthPixel;
 }
 
-IplImage* Camera::getFrame(){
+void Camera::setFrame(){
     frame = cvQueryFrame( capture );
+}
+
+IplImage* Camera::getFrame(){
     return frame;
 }
+
 
 bool Camera::getStatusCamera(){
     return statusCamera;

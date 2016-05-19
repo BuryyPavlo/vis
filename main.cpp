@@ -18,7 +18,7 @@
 
 #include <camera.h>
 #include <readlogfile.h>
-#include <proces.h>
+
 
 #include <point3d.h>
 
@@ -30,20 +30,21 @@ int main()
 
     QString fileTxtName = "//home//buryi//blaphoto//data.txt";
     READLOGFILE log(fileTxtName);
+    COMPAS compas(camera.getMatrixHeightPixel(), 20);
     while(true)
-
     {
         log.readLog();
-        IplImage *frame = camera.getFrame();
-        COMPAS compas(camera.getMatrixHeightPixel(), 20);
+        camera.setFrame();
+
         compas.inYaw(log.getYawBla());
-        compas.draw(frame);
-        compas.outText(frame,log.getX(),log.getY(),log.getZ(),log.getYawBla(), log.getPitchBla(), log.getRollBla());
+        compas.draw(camera.getFrame());
+
+        compas.outText(camera.getFrame(),log.getX(),log.getY(),log.getZ(),log.getYawBla(), log.getPitchBla(), log.getRollBla());
         Point3D mainPoint(log.getX(),log.getY(),log.getZ());
         ORIENTATION ori (mainPoint,log.getYawBla(), log.getPitchBla(), log.getRollBla(), 49, 36.75, 35);
         //ori.printDani(frame, camera.getMatrixWidthPixel());
 
-        cvShowImage("Falcon eye", frame);
+        cvShowImage("Falcon eye", camera.getFrame());
         char c = cvWaitKey(33);
         if (c == 27) { // нажата ESC
             break;
