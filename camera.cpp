@@ -8,7 +8,12 @@ Camera::Camera(){
     capture = cvCreateCameraCapture(CV_CAP_ANY);
     if (capture == 0  ) {
         ERRORMESSAGE error(2,1);
-    }
+        statusCamera = false;
+    } else
+    matrixHeightMeters = 0.049;
+    matrixWidthMeters  = 0.03675;
+    foxusLenght = 0.035;
+
     setMatrixWidthPixel();
     setMartixHeightPixel();
     frame=0;
@@ -37,8 +42,31 @@ void Camera::setMartixHeightPixel(int inMartixHeightPixel){
     cvSetCaptureProperty(capture, CV_CAP_PROP_FRAME_HEIGHT, martixHeightPixel);
 }
 
+double Camera::getfocusLenght(){
+    return foxusLenght;
+}
+
+double Camera::getMatrixHeightMeters(){
+    return matrixHeightMeters;
+}
+
+double Camera::getMatrixWidthMeters(){
+    return matrixWidthMeters;
+}
+
+int Camera::getMatrixHeightPixel(){
+    return matrixWidthPixel;
+}
+
+int Camera::getMatrixWidthPixel(){
+    return matrixWidthPixel;
+}
 
 IplImage* Camera::getFrame(){
     frame = cvQueryFrame( capture );
     return frame;
+}
+
+bool Camera::getStatusCamera(){
+    return statusCamera;
 }

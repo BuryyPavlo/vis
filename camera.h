@@ -10,21 +10,25 @@ private:
     int matrixWidthPixel;
     int martixHeightPixel;
     double foxusLenght;
+    bool statusCamera;
     IplImage *frame;
+
     CvCapture *capture;
 
 public:
     Camera();
     ~Camera();
     int getMatrixWidthPixel();
-    int getMartixHeightPixel();
+    int getMatrixHeightPixel();
     void setMatrixWidthPixel();
     void setMartixHeightPixel();
     void setMatrixWidthPixel(int inMatrixWidthPixel);
     void setMartixHeightPixel(int inMartixHeightPixel);
     double getMatrixHeightMeters();
     double getMatrixWidthMeters();
+    double getfocusLenght();
     IplImage* getFrame();
+    bool getStatusCamera();
 
 };
 

@@ -9,7 +9,7 @@
 
 COMPAS::COMPAS(int inHeight, int inPercent){
     height = inHeight;
-    precent = ((double)inPercent/100);
+    precent = 0.20;//((double)inPercent/100);
     sizeCompass = (precent * height);
     heigthCompass = (int)(0.5 * sizeCompass);
     widhtCompass = (int)(heigthCompass * 0.25);
@@ -35,14 +35,14 @@ void COMPAS::inYaw(double inYaw){
 }
 
 void COMPAS::rotation(){
-    topX1    = (int)(topX*matixYaw[0][0]+matixYaw[0][1]*topY);
-    topY1    = (int)(topX*matixYaw[1][0]+matixYaw[1][1]*topY);
-    bottomX1 = (int)(bottomX*matixYaw[0][0]+matixYaw[0][1]*bottomY);
-    bottomY1 = (int)(bottomX*matixYaw[1][0]+matixYaw[1][1]*bottomY);
-    rightX1  = (int)(rightX*matixYaw[0][0]+matixYaw[0][1]*rightY);
-    rightY1  = (int)(rightX*matixYaw[1][0]+matixYaw[1][1]*rightY);
-    leftX1   = (int)(leftX*matixYaw[0][0]+matixYaw[0][1]*leftY);
-    leftY1   = (int)(leftX*matixYaw[1][0]+matixYaw[1][1]*leftY);
+  // topX1    = (int)(topX*matixYaw[0][0]+matixYaw[0][1]*topY);
+  // topY1    = (int)(topX*matixYaw[1][0]+matixYaw[1][1]*topY);
+  // bottomX1 = (int)(bottomX*matixYaw[0][0]+matixYaw[0][1]*bottomY);
+  // bottomY1 = (int)(bottomX*matixYaw[1][0]+matixYaw[1][1]*bottomY);
+  // rightX1  = (int)(rightX*matixYaw[0][0]+matixYaw[0][1]*rightY);
+  // rightY1  = (int)(rightX*matixYaw[1][0]+matixYaw[1][1]*rightY);
+  // leftX1   = (int)(leftX*matixYaw[0][0]+matixYaw[0][1]*leftY);
+  // leftY1   = (int)(leftX*matixYaw[1][0]+matixYaw[1][1]*leftY);
     topX1    += centerCompassX;
     rightX1  += centerCompassX;
     bottomX1 += centerCompassX;

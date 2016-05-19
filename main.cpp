@@ -8,14 +8,18 @@
 #include <QDate>
 #include <QString>
 #include <QFile>
-#include <math.h>
+
 #include <QTimer>
 
 #include <compas.h>
-#include <readlogfile.h>
+
 #include <errormessage.h>
 #include <orientation.h>
+
 #include <camera.h>
+#include <readlogfile.h>
+#include <proces.h>
+
 #include <point3d.h>
 
 int main()
@@ -26,20 +30,20 @@ int main()
 
     QString fileTxtName = "//home//buryi//blaphoto//data.txt";
     READLOGFILE log(fileTxtName);
-    while(true){
-        log.readLog();
+    while(true)
 
-        /*
-        COMPAS compas(height, 20);
+    {
+        log.readLog();
+        IplImage *frame = camera.getFrame();
+        COMPAS compas(camera.getMatrixHeightPixel(), 20);
         compas.inYaw(log.getYawBla());
         compas.draw(frame);
         compas.outText(frame,log.getX(),log.getY(),log.getZ(),log.getYawBla(), log.getPitchBla(), log.getRollBla());
-
         Point3D mainPoint(log.getX(),log.getY(),log.getZ());
         ORIENTATION ori (mainPoint,log.getYawBla(), log.getPitchBla(), log.getRollBla(), 49, 36.75, 35);
-        //ori.printDani(frame, width);
-        */
-        cvShowImage("Falcon eye", camera.getFrame());
+        //ori.printDani(frame, camera.getMatrixWidthPixel());
+
+        cvShowImage("Falcon eye", frame);
         char c = cvWaitKey(33);
         if (c == 27) { // нажата ESC
             break;
@@ -56,6 +60,5 @@ int main()
             cvSaveImage(filename, camera.getFrame());
         }
     }
-
     return 0;
 }
