@@ -18,7 +18,8 @@ SOURCES += main.cpp \
     readlogfile.cpp \
     errormessage.cpp \
     orientation.cpp \
-    point3d.cpp
+    point3d.cpp \
+    camera.cpp
 
 
 HEADERS += \
@@ -26,4 +27,5 @@ HEADERS += \
     readlogfile.h \
     errormessage.h \
     orientation.h \
-    point3d.h
+    point3d.h \
+    camera.h

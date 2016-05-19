@@ -8,12 +8,6 @@
 class READLOGFILE: public QFile
 {
 private:
-    QString wayToTxtFile;
-    int positionInFile = 0;
-    bool ifOpen = false;
-    int getTextPosition();
-    int setTextPosition(int lenght);
-
     // readinf date
     QString namePhoto  = 0;
     double xBla    = 0;
@@ -22,6 +16,13 @@ private:
     double yawBla  = 0;
     double pitchBla= 0;
     double rollBla = 0;
+
+    QString wayToTxtFile;
+    int positionInFile = 0;
+    bool ifOpen = false;
+    int getTextPosition();
+    int setTextPosition(int lenght);
+
     void printError(int numErro);
     void printError();
 

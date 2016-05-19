@@ -1,10 +1,26 @@
 #include <point3d.h>
 #include <QString>
 
+Point3D::Point3D(){
+    x = 0;
+    y = 0;
+    z = 0;
+
+}
+
 Point3D::Point3D(double inX, double inY, double inZ){
     x = inX;
     y = inY;
     z = inZ;
+}
+
+
+Point3D Point3D::operator = (Point3D right){
+    x = right.x;
+    y = right.y;
+    z = right.z;
+    return *this;
+
 }
 
 Point3D Point3D::add(Point3D point, Point3D pointAdd){

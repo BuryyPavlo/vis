@@ -15,46 +15,31 @@
 #include <readlogfile.h>
 #include <errormessage.h>
 #include <orientation.h>
+#include <camera.h>
+#include <point3d.h>
 
 int main()
 {
-    CvCapture *capture = cvCreateCameraCapture(CV_CAP_ANY);
-    if (capture == 0  ) {
-        ERRORMESSAGE error(2,1);
-        return 0;
-    }
+    Camera camera;
 
-    // cvSetCaptureProperty(capture, CV_CAP_PROP_FRAME_WIDTH, 1280);//1280/640/320
-    // cvSetCaptureProperty(capture, CV_CAP_PROP_FRAME_HEIGHT, 720);//720/480/240
-
-    int width = cvGetCaptureProperty(capture, CV_CAP_PROP_FRAME_WIDTH);
-    int height = cvGetCaptureProperty(capture, CV_CAP_PROP_FRAME_HEIGHT);
-    printf("width=%d; height=%d;\n\n", width, height );
-
-    IplImage* frame=0;
     printf("press Enter for save image!\npress Esc for quit!\n\n");
 
     QString fileTxtName = "//home//buryi//blaphoto//data.txt";
     READLOGFILE log(fileTxtName);
-    if (log.getIfOpen() == false) {
-        return 0;
-    }
-
-    QDateTime now = QDateTime::currentDateTime();
-    QString strTime;
-    strTime = now.toString("dd:MM:yyyy_HH:mm:ss:zzz");
-    std:: cout << strTime.toStdString()<< "\n";
     while(true){
         log.readLog();
-        frame = cvQueryFrame( capture );
 
+        /*
         COMPAS compas(height, 20);
         compas.inYaw(log.getYawBla());
         compas.draw(frame);
         compas.outText(frame,log.getX(),log.getY(),log.getZ(),log.getYawBla(), log.getPitchBla(), log.getRollBla());
-        ORIENTATION ori (log.getX(),log.getY(),log.getZ(),log.getYawBla(), log.getPitchBla(), log.getRollBla(), 49, 36.75, 35);
-        ori.printDani(frame, width);
-        cvShowImage("eye", frame);
+
+        Point3D mainPoint(log.getX(),log.getY(),log.getZ());
+        ORIENTATION ori (mainPoint,log.getYawBla(), log.getPitchBla(), log.getRollBla(), 49, 36.75, 35);
+        //ori.printDani(frame, width);
+        */
+        cvShowImage("Falcon eye", camera.getFrame());
         char c = cvWaitKey(33);
         if (c == 27) { // нажата ESC
             break;
@@ -68,10 +53,9 @@ int main()
             QByteArray ba = strTime.toLatin1();
             char *filename = ba.data();
             printf("capture... %s\n",filename);
-            cvSaveImage(filename, frame);
+            cvSaveImage(filename, camera.getFrame());
         }
     }
-    cvReleaseCapture( &capture );
-    cvDestroyWindow("capture");
+
     return 0;
 }

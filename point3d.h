@@ -10,6 +10,8 @@ private:
     double z;
 public:
     Point3D(double inX, double inY, double inZ);
+    Point3D();
+    Point3D operator = (Point3D right);
     Point3D add(Point3D point, Point3D pointAdd);
     void add(double addX,double addY, double addZ);
     ~Point3D();
