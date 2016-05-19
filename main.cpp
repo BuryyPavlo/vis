@@ -39,11 +39,6 @@ int main()
     if (log.getIfOpen() == false) {
         return 0;
     }
-
-    QDateTime now = QDateTime::currentDateTime();
-    QString strTime;
-    strTime = now.toString("dd:MM:yyyy_HH:mm:ss:zzz");
-    std:: cout << strTime.toStdString()<< "\n";
     while(true){
         log.readLog();
         frame = cvQueryFrame( capture );
